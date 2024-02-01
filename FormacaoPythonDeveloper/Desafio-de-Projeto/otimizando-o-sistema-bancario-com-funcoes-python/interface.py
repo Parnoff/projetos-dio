@@ -1,15 +1,18 @@
 import tkinter as tk
 
-# Criar uma instância da classe Tkinter
-root = tk.Tk()
+class App(tk.Frame):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.pack()
 
-# Adicionar um rótulo (label)
-label = tk.Label(root, text="Olá, Tkinter!")
-label.pack()
+# create the application
+myapp = App()
 
-# Adicionar um botão
-button = tk.Button(root, text="Clique em mim!", command=on_button_click)
-button.pack()
+#
+# here are method calls to the window manager class
+#
+myapp.master.title("Sistema Bancário")
+myapp.master.maxsize(1000, 400)
 
-# Iniciar o loop principal da interface gráfica
-root.mainloop()
+# start the program
+myapp.mainloop()
