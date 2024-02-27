@@ -20,6 +20,7 @@ def depositar(saldo,valor):
 def sacar(saldo,valor):
     saldo -= valor
     return saldo   
+
 clientes = []  # Lista vazia para armazenar informações dos clientes
 def cadastrar_cliente(nome,data_nascimento,cpf,endereco):
     # Cria um dicionário com as informações do cliente
@@ -63,22 +64,29 @@ def cadastrar_conta(cpf):
     else:
        numero = max(conta['numero'] for conta in contas) + 1
 
-    # Cria um dicionário com as informações da conta
-    conta = {
-        'agencia': AGENCIA,
-        'numero': numero,
-        'cpf': cpf
-    }
+    if (cliente[cpf] for cliente in clientes):
+        # Cria um dicionário com as informações da conta
+        conta = {
+            'agencia': AGENCIA,
+            'numero': numero,
+            'cpf': cpf
+        }
 
-    # Adiciona o dicionário à lista de clientes
-    contas.append(conta)
-
+        # Adiciona o dicionário à lista de clientes
+        contas.append(conta)   
+    else:
+        print(f'CPF: {cpf} não cadastrado!')
+        return False
+        
 def listar_contas():
     print("\nInformações dos contas:")
     for conta in contas:
-        print(f"\nAgência: {conta['agencia']}")
-        print(f"Número: {conta['numero']}")
-        print(f"CPF: {conta['cpf']}")
+        for cliente in clientes:
+            if conta['cpf'] == cliente['cpf']:
+                print(f"\nAgência: {conta['agencia']}")
+                print(f"Número: {conta['numero']}")
+                print(f"CPF: {conta['cpf']}")
+                print(f"Cliente: {cliente['nome']}")
 
 def main():
 
@@ -125,11 +133,10 @@ def main():
                     print(f'{descricao} de + R$ {valor}')     
             print(f'O saldo da sua conta é R$ {saldo}\n')    
         elif opcao == 'nc':
-            cpf = '101.471.869-43'
-            cadastrar_conta(cpf)     
-            listar_contas()  
+            cpf = input("Digite o CPF do cliente o qual deseja abrir uma conta no Banco: ")
+            cadastrar_conta(cpf)         
         elif opcao == 'lc':
-            print("Listando contas cadastradas!")       
+            listar_contas()      
         elif opcao == 'nu':
             nome = input("Digite o nome do cliente: ")
             data_nascimento = input("Digite a data de nascimento do cliente (formato: DD/MM/AAAA): ")
