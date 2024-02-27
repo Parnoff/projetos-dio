@@ -108,6 +108,7 @@ def main():
                 print("Depósito de R$ ",valor," realizado com sucesso!")
             else:
                 print(msg)
+
         elif opcao == 's':
             valor = float(input("Informe o valor do saque: "))
             if valor > 0:
@@ -124,19 +125,25 @@ def main():
                           Valor R$ {limite} Limite de Saque foi atingido!
                           """)
             else:
-                print(msg)   
+                print(msg)  
+
         elif opcao == 'e':
+
             for valor, descricao in movimentacoes.items():
                 if descricao == 'Saque':
                     print(f'{descricao} de - R$ {valor}')
                 else:
-                    print(f'{descricao} de + R$ {valor}')     
+                    print(f'{descricao} de + R$ {valor}')    
+
             print(f'O saldo da sua conta é R$ {saldo}\n')    
+
         elif opcao == 'nc':
             cpf = input("Digite o CPF do cliente o qual deseja abrir uma conta no Banco: ")
-            cadastrar_conta(cpf)         
+            cadastrar_conta(cpf)   
+
         elif opcao == 'lc':
-            listar_contas()      
+            listar_contas()     
+
         elif opcao == 'nu':
             nome = input("Digite o nome do cliente: ")
             data_nascimento = input("Digite a data de nascimento do cliente (formato: DD/MM/AAAA): ")
@@ -147,11 +154,12 @@ def main():
                 endereco = input("Digite o endereço do cliente: ")
                 cadastrar_cliente(nome,data_nascimento,cpf,endereco)
                 listar_clientes()
+
         elif opcao == 'q':
             print("Até logo!") 
             break   
         else:
             print("Opção inválida")
             break
-
+        
 main()
