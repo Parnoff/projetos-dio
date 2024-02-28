@@ -6,4 +6,4 @@ services:
     ports:
     - '8080:80'
     volumes:
-    - ./linux-site-dio-main:/usr/local/apache2/htdocs
+    - ./web-app:/usr/local/apache2/htdocs
